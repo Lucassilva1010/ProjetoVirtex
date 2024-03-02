@@ -1,8 +1,8 @@
 const readline = require("readline");
 const fs = require("fs");
-
+const caminhoArquivo = "D:/Lucas/testeVirtex/Inputs/OntInfo - Huawei.txt";
 const lineReader = readline.createInterface({
-    input: fs.createReadStream("D:/Lucas/testeVirtex/Inputs/OntInfo - Huawei.txt")
+    input: fs.createReadStream(caminhoArquivo)
 });
 
 // Índice da coluna que você deseja extrair (0 para a primeira coluna, 1 para a segunda coluna, etc.)
@@ -26,7 +26,7 @@ lineReader.on("line", (data) => {
         let semEspacoEmBranco = novaColuna.filter(x => x.trim() !== "");
 
         // console.log(semEspacoEmBranco[3]);
-
+//tranformação dos aquivos em Objeto
         let myObj = {
           port: semEspacoEmBranco[1],
           ont_id: semEspacoEmBranco[2],
