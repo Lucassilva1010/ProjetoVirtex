@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insert Data</title>
+</head>
+<body>
+    <h1>Insert Data</h1>
+    <form id="insertForm">
+        <label for="port">Port:</label>
+        <input type="text" id="port" name="port"><br>
+        <label for="ont_id">ONT ID:</label>
+        <input type="text" id="ont_id" name="ont_id"><br>
+        <label for="sn">SN:</label>
+        <input type="text" id="sn" name="sn"><br>
+        <label for="run_state">Run State:</label>
+        <input type="text" id="run_state" name="run_state"><br>
+        <button type="button" onclick="sendData()">Submit</button>
+    </form>
+
+    <script>
+        function sendData() {
+            // Capturando os valores dos campos do formulário
+            const port = document.getElementById('port').value;
+            const ont_id = document.getElementById('ont_id').value;
+            const sn = document.getElementById('sn').value;
+            const run_state = document.getElementById('run_state').value;
+
+            // Criando um objeto com os dados
+            const data = {
+                port: port,
+                ont_id: ont_id,
+                sn: sn,
+                run_state: run_state
+            };
+
+            // Enviando a requisição POST
+            fetch('/info/insert', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert('Dados inseridos com sucesso');
+                } else {
+                    throw new Error('Erro ao inserir dados');
+                }
+            })
+            .catch(error => {
+                console.error('Erro:', error);
+                alert('Erro ao inserir dados');
+            });
+        }
+    </script>
+</body>
+</html>

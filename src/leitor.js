@@ -1,6 +1,7 @@
 const readline = require("readline");
 const fs = require("fs");
 const caminhoArquivo = "D:/Lucas/testeVirtex/Inputs/OntInfo - Huawei.txt";
+
 const lineReader = readline.createInterface({
     input: fs.createReadStream(caminhoArquivo)
 });
@@ -25,16 +26,12 @@ lineReader.on("line", (data) => {
         let novaColuna = dadoColuna.split(" "); 
         let semEspacoEmBranco = novaColuna.filter(x => x.trim() !== "");
 
-        // console.log(semEspacoEmBranco[3]);
 //tranformação dos aquivos em Objeto
         let myObj = {
           port: semEspacoEmBranco[1],
           ont_id: semEspacoEmBranco[2],
           sn: semEspacoEmBranco[3],
-          control_flag: semEspacoEmBranco[4],
           run_state: semEspacoEmBranco[5],
-          config_state: semEspacoEmBranco[6],
-          match_state: semEspacoEmBranco[7]
         }
 
         arquivoJSON = JSON.stringify(myObj);
@@ -46,5 +43,7 @@ lineReader.on("line", (data) => {
 });
 
 lineReader.on("close", () => {
-  console.log(arrObjJSON);
+    console.log(arrObjJSON);
 });
+
+module.exports = arrObjJSON;
