@@ -1,5 +1,6 @@
 const express = require("express")
 const tbRotas = require("./Rotas/routers") 
+const { escolherLeitor } = require("../src/leitor")
 
 const app = express();
 
@@ -14,6 +15,8 @@ app.get("/", (req,res)=>{
 const port= 3000;
 
 
-app.listen(port, ()=>{
+app.listen(port,  ()=>{
     console.log("rodando: " + port)
 })
+
+escolherLeitor("D:/Lucas/testeVirtex/Inputs", "OntInfo - Huawei.txt" ).then()
