@@ -12,11 +12,12 @@ app.get("/", (req,res)=>{
     res.send("Conectado")
 })
 
-const port= 3000;
+function iniciarServidor(){
+    escolherLeitor("D:/Lucas/testeVirtex/Inputs", "OntInfo - Huawei.txt")
+    app.listen(port,  ()=>{
+        console.log("rodando: " + port)
+    })
+}
 
-
-app.listen(port,  ()=>{
-    console.log("rodando: " + port)
-})
-
-escolherLeitor("D:/Lucas/testeVirtex/Inputs", "OntInfo - Huawei.txt" ).then()
+const port = 8016;
+iniciarServidor()

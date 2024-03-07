@@ -6,24 +6,19 @@ const pool = require("../src/Bd/bd")
 async function escolherLeitor(caminhoArquivo, nomeArquivo) {
     if (nomeArquivo == "OntInfo - Huawei.txt") {
         console.log(caminhoArquivo, nomeArquivo)
-
-        await leitorArquivoHuawei(`${caminhoArquivo}/${nomeArquivo}`)
+        const caminho  = `${caminhoArquivo}/${nomeArquivo}`
+        
+        leitorArquivoHuawei(caminho)
+        console.log(caminho)
     }
-    if (nomeArquivo == "OntInfo - ZTE - SNs - State.txt") {
-
-    }
-    if (nomeArquivo == "OntInfo - ZTE - SNs.txt") {
-
-    }
-
 }
 
-
-async function leitorArquivoHuawei(caminhoArquivo) {
+ function leitorArquivoHuawei(caminhoArquivo) {
     const lineReader = readline.createInterface({
         input: fs.createReadStream(caminhoArquivo)
     });
-    await pool.connect();
+    
+     pool.connect();
     // Índice da coluna que você deseja extrair (0 para a primeira coluna, 1 para a segunda coluna, etc.)
     const columnIndex = 0;
     let lineCount = 0;
@@ -80,7 +75,6 @@ async function inserirDados(dado) {
         console.error('Erro ao inserir dados:', error);
     }
 }
-
 
 
 module.exports = { escolherLeitor }
